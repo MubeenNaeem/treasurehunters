@@ -26,7 +26,7 @@
 </data>
  </layer>
  <objectgroup id="6" name="Spawnpoints">
-  <object id="8" name="Player" type="Player" x="64" y="448" width="96" height="60"/>
+  <object id="8" name="Player" type="Player" x="64" y="460" width="96" height="60"/>
   <object id="29" name="Gem" type="Gem" x="192" y="416" width="32" height="32"/>
   <object id="37" name="Gem" type="Gem" x="224" y="416" width="32" height="32"/>
   <object id="38" name="Gem" type="Gem" x="256" y="416" width="32" height="32"/>

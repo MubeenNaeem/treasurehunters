@@ -8,21 +8,38 @@
     ],
     "fileStates": {
         "level-01.tmx": {
-            "scale": 1.1202083333333333,
+            "expandedGroupLayers": [
+                5
+            ],
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 403.33333333333337,
+                "y": 431.99999999999994
+            }
+        },
+        "level-02.tmx": {
+            "scale": 1.5511718749999999,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 359.75450994978615,
-                "y": 320.47610191556635
+                "x": 320.08058423570895,
+                "y": 184.3767313019391
             }
         }
     },
-    "last.imagePath": "C:/Users/Mubeen Naeem/AndroidStudioProjects/tresurehunters/assets/images/Palm Tree Island/Sprites/Terrain",
+    "last.imagePath": "C:/Users/Mubeen Naeem/AndroidStudioProjects/tresurehunters/assets/images/Palm Tree Island/Sprites/Front Palm Trees",
+    "map.height": 11,
     "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 20,
     "openFiles": [
     ],
     "project": "treasurehunters.tiled-project",
     "recentFiles": [
+        "level-02.tmx",
         "level-01.tmx"
     ],
+    "resizeMap.removeObjects": true,
     "tileset.lastUsedFormat": "tsx"
 }

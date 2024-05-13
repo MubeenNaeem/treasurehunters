@@ -11,16 +11,16 @@ class Player extends SpriteAnimationGroupComponent
   Player({super.position, super.size});
 
   final playerBox = RectangleHitbox(
-    size: Vector2(32, 50),
-    position: Vector2(32, 5),
+    size: Vector2(22, 28),
+    position: Vector2(22, 5),
   );
 
   Vector2 velocity = Vector2.zero();
   int horizontalDirection = 0;
   double horizontalSpeed = 200;
-  double jumpingSpeed = -400;
+  double jumpingSpeed = -320;
   double gravity = 10;
-  double terminalVelocity = 300;
+  double terminalVelocity = 400;
 
   bool isMoving = false;
   bool isOnGround = true;
@@ -28,7 +28,8 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   void onLoad() {
-    debugMode = true;
+    debugMode = !true;
+
     // add hit box
     add(playerBox);
 
@@ -43,6 +44,37 @@ class Player extends SpriteAnimationGroupComponent
     // setting current animation
     current = PlayerState.idle;
     super.onLoad();
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is CollisionBlock) {
+      isOnGround = true;
+      velocity.y = 0;
+    }
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
+  void onCollisionEnd(PositionComponent other) {
+    isOnGround = false;
+    super.onCollisionEnd(other);
+  }
+
+  @override
+  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    horizontalDirection = 0;
+    final leftArrow = keysPressed.contains(LogicalKeyboardKey.arrowLeft);
+    final rightArrow = keysPressed.contains(LogicalKeyboardKey.arrowRight);
+
+    horizontalDirection += leftArrow ? -1 : 0;
+    horizontalDirection += rightArrow ? 1 : 0;
+
+    if (!hasJumped && isOnGround) {
+      hasJumped = keysPressed.contains(LogicalKeyboardKey.space);
+    }
+    return super.onKeyEvent(event, keysPressed);
   }
 
   @override
@@ -84,29 +116,6 @@ class Player extends SpriteAnimationGroupComponent
     velocity.y += gravity;
     velocity.y = velocity.y.clamp(jumpingSpeed, terminalVelocity);
     position.y += velocity.y * dt;
-  }
-
-  @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is CollisionBlock) {
-      isOnGround = true;
-      velocity.y = 0;
-    }
-    super.onCollisionStart(intersectionPoints, other);
-  }
-
-  @override
-  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    horizontalDirection = 0;
-    final leftArrow = keysPressed.contains(LogicalKeyboardKey.arrowLeft);
-    final rightArrow = keysPressed.contains(LogicalKeyboardKey.arrowRight);
-
-    horizontalDirection += leftArrow ? -1 : 0;
-    horizontalDirection += rightArrow ? 1 : 0;
-
-    hasJumped = keysPressed.contains(LogicalKeyboardKey.space);
-    return super.onKeyEvent(event, keysPressed);
   }
 
   SpriteAnimation playerSprite(String animationPath, int count) {

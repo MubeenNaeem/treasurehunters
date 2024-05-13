@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:tresurehunters/components/background.dart';
 import 'package:tresurehunters/components/collision_block.dart';
 import 'package:tresurehunters/components/player.dart';
 
@@ -18,9 +19,10 @@ class Level extends World {
 
   Future<void> loadLevel() async {
     level = await TiledComponent.load(
-      'level-01.tmx',
+      'Level-1.tmx',
       Vector2.all(32),
     );
+    add(Background());
     add(level);
   }
 
@@ -38,7 +40,7 @@ class Level extends World {
   }
 
   void spawnItems() {
-    final spawnLayer = level.tileMap.getLayer<ObjectGroup>('Spawnpoints');
+    final spawnLayer = level.tileMap.getLayer<ObjectGroup>('SpawnPoints');
     if (spawnLayer != null) {
       for (final item in spawnLayer.objects) {
         switch (item.class_) {

@@ -5,7 +5,7 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:tresurehunters/level.dart';
+import 'package:tresurehunters/components/level.dart';
 
 class TreasureHunters extends FlameGame
     with HasKeyboardHandlerComponents, HasCollisionDetection {
@@ -17,14 +17,14 @@ class TreasureHunters extends FlameGame
   }
 
   @override
-  Color backgroundColor() => Color(0xff3e3e60);
+  Color backgroundColor() => const Color(0xfff2b882);
 
   void addWorld() {
     world = Level();
     camera = CameraComponent.withFixedResolution(
       world: world,
-      width: 960,
-      height: 640,
+      width: 640,
+      height: 352,
     );
     camera.viewfinder.anchor = Anchor.topLeft;
     add(world);
